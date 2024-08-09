@@ -1,17 +1,16 @@
-﻿import { IsNotEmpty } from "class-validator";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Produto } from "../../produto/entities/produto.entity";
+﻿import { Transform, TransformFnParams } from "class-transformer";
+import { IsNotEmpty } from "class-validator";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: "tb_categorias"})
-export class Categoria{
-
-    @PrimaryGeneratedColumn()    
-    id: number;
-
-    @IsNotEmpty()
-    @Column({length: 255, nullable: false})
-    tipo: string;
+@Entity({name:'tb_categorias'})
+export class Categoria {
     
-    @OneToMany(() => Produto, (produto) => produto.categoria)
-    produto: Produto[]
+    @PrimaryGeneratedColumn()
+    id:number
+
+    @Transform(({ value }: TransformFnParams) => value?.trim())
+    @IsNotEmpty()
+    @Column({length:255,nullable:false})
+    tipo:string
+
 }

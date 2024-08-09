@@ -4,14 +4,11 @@ import { Categoria } from "./entities/categoria.entity";
 import { CategoriaService } from "./services/categoria.service";
 import { CategoriaController } from "./controllers/categoria.controller";
 
+
 @Module({
     imports: [TypeOrmModule.forFeature([Categoria])],
     providers: [CategoriaService],
     controllers: [CategoriaController],
-    exports: [TypeOrmModule],
+    exports: [TypeOrmModule]
 })
-
-
-export class CategoriaModule {
-
-}
+export class CategoriaModule {}
